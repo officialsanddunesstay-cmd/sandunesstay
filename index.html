@@ -766,7 +766,7 @@ section{position:relative;}
    19. FLOATING BUTTONS
    =========================================================== */
 .float-whatsapp{
-  position:fixed;bottom:1.5rem;right:1.5rem;z-index:80;
+  position:fixed;bottom:24px;right:20px;z-index:80;
   width:58px;height:58px;border-radius:50%;
   background:#25D366;display:flex;align-items:center;justify-content:center;
   box-shadow:0 10px 26px -6px rgba(0,0,0,.4);
@@ -776,7 +776,7 @@ section{position:relative;}
 @keyframes pulseRing{0%{transform:scale(1);opacity:.6;}100%{transform:scale(1.7);opacity:0;}}
 
 .float-call{
-  position:fixed;bottom:6rem;right:1.5rem;z-index:80;
+  position:fixed;bottom:220px;right:20px;z-index:80;
   width:58px;height:58px;border-radius:50%;
   background:var(--clay);display:flex;align-items:center;justify-content:center;
   box-shadow:0 10px 26px -6px rgba(0,0,0,.4);
@@ -884,7 +884,7 @@ section{position:relative;}
 /* ── Chat Toggle Button ── */
 #sds-chat-toggle {
   position: fixed;
-  bottom: 86px;          /* 70px CTA bar + 16px gap */
+  bottom: 100px;         /* above whatsapp button */
   right: 20px;
   z-index: 195;
   width: 56px;
@@ -938,7 +938,7 @@ section{position:relative;}
 #sds-chat-window {
   position: fixed;
   /* Opens upward from toggle: 86 + 52 + 12 gap = 150px */
-  bottom: 150px;
+  bottom: 170px;
   right: 20px;
   z-index: 194;
   width: min(360px, calc(100vw - 2rem));
@@ -1115,7 +1115,7 @@ section{position:relative;}
 /* ── Responsive adjustments ── */
 @media (max-width: 480px) {
   #sds-chat-toggle {
-    bottom: 86px;
+    bottom: 100px;
     right: 16px;
     width: 52px;
     height: 52px;
@@ -1125,13 +1125,13 @@ section{position:relative;}
     height: 52px !important;
   }
   #sds-chat-window {
-    bottom: 146px;
+    bottom: 170px;
     right: 12px;
     width: calc(100vw - 1.5rem);
     max-height: calc(100dvh - 190px);
   }
   .float-call {
-    bottom: 154px;
+    bottom: 220px;
     right: 16px;
     width: 48px;
     height: 48px;
@@ -1234,7 +1234,7 @@ body.lang-hi .lt-hi { color: var(--gold,#C49A3C); }
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+  "@type": ["LodgingBusiness", "VacationRental"],
   "name": "Sand Dunes Stay",
   "alternateName": "Sand Dunes Stay Bagru Jaipur",
   "description": "Luxury private pool villa in Bagru, Jaipur. 5 bedrooms, up to 15 guests overnight, 100 guests for events. 100% private pool, party hall, BBQ, sun terrace. Located on NH48 Ajmer Road, 20km from Jaipur International Airport. Perfect for birthday parties, pool parties, family stays, corporate retreats.",
@@ -1256,11 +1256,17 @@ body.lang-hi .lt-hi { color: var(--gold,#C49A3C); }
   },
   "hasMap": "https://maps.app.goo.gl/ay9dXkxg96yVAXXW7",
   "numberOfRooms": 5,
-  "checkinTime": "12:00",
-  "checkoutTime": "11:00",
+  "checkinTime": "T12:00:00",
+  "checkoutTime": "T11:00:00",
   "priceRange": "₹₹₹",
   "currenciesAccepted": "INR",
   "paymentAccepted": "Cash, UPI, Bank Transfer",
+  "petsAllowed": false,
+  "smokingAllowed": false,
+  "starRating": {
+    "@type": "Rating",
+    "ratingValue": "4"
+  },
   "image": [
     "https://res.cloudinary.com/a07rkp97/image/upload/f_auto,q_auto,w_1200/v1783660730/file_00000000764471f5ae9a25b996a4ed8a_zx2iyr.png",
     "https://res.cloudinary.com/a07rkp97/image/upload/f_auto,q_auto,w_1200/v1782892372/SAVE_20260629_200624_r8xfek.jpg"
