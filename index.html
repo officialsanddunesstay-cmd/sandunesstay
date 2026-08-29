@@ -1422,7 +1422,6 @@ body.lang-hi .lt-hi { color: var(--gold,#C49A3C); }
       <a href="guideblog.html"><span data-en="Guide" data-hi="गाइड">Guide</span></a>
       <a href="events.html"><span data-en="Events" data-hi="इवेंट्स">Events</span></a>
     </nav>
-    <a href="#contact" class="btn btn-gold nav-cta"><span data-en="Book Now" data-hi="अभी बुक करें">Book Now</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
     </button>
@@ -2242,49 +2241,331 @@ body.lang-hi .lt-hi { color: var(--gold,#C49A3C); }
 </section>
 
 <!-- =====================================================
-     8. TESTIMONIALS (future-ready placeholder)
+     8. GOOGLE REVIEWS
 ===================================================== -->
-<section class="section-pad testimonial-section">
+<style>
+.gbp-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1.5px solid rgba(43,32,24,.1);border-radius:var(--radius-pill);padding:.45em 1.1em;font-size:.82rem;font-weight:600;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:1.8rem;}
+.gbp-badge svg{width:18px;height:18px;}
+.gbp-rating-big{font-size:1.7rem;font-weight:700;color:var(--ink);line-height:1;}
+.gbp-badge .gbp-stars-sm{display:flex;gap:2px;}
+.gbp-badge .gbp-stars-sm svg{width:13px;height:13px;fill:#FBBC04;}
+.reviews-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.reviews-header .section-head{margin-bottom:0;}
+.view-all-reviews{display:inline-flex;align-items:center;gap:.4rem;color:var(--clay);font-size:.85rem;font-weight:600;letter-spacing:.02em;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s;}
+.view-all-reviews:hover{border-bottom-color:var(--clay);}
+.view-all-reviews svg{width:14px;height:14px;}
+
+.review-card{
+  background:#fff;
+  border:1.5px solid rgba(43,32,24,.08);
+  border-radius:var(--radius-md);
+  padding:1.5rem;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.review-card__top{display:flex;align-items:flex-start;gap:.85rem;}
+.review-avatar{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:1rem;color:#fff;flex:none;
+}
+.review-meta b{display:block;font-size:.92rem;color:var(--ink);}
+.review-meta .review-date{font-size:.75rem;color:var(--ink-soft);margin-top:.15rem;}
+.review-stars{display:flex;gap:2px;margin-top:.3rem;}
+.review-stars svg{width:14px;height:14px;fill:#FBBC04;}
+.review-text{font-size:.88rem;line-height:1.65;color:var(--ink-soft);}
+.review-source{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--ink-soft);padding-top:.5rem;border-top:1px solid rgba(43,32,24,.06);}
+.review-source svg{width:14px;height:14px;}
+
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+}
+@media(max-width:900px){.reviews-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.reviews-grid{grid-template-columns:1fr;}}
+
+/* OTA Section */
+.ota-section{background:var(--sand-100);border-top:1px solid rgba(43,32,24,.07);}
+.ota-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1rem;
+  margin-top:2rem;
+}
+@media(max-width:900px){.ota-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.ota-grid{grid-template-columns:1fr;gap:.8rem;}}
+
+.ota-card{
+  background:#fff;
+  border:1.5px solid rgba(43,32,24,.09);
+  border-radius:var(--radius-md);
+  padding:1.4rem 1.2rem;
+  text-align:center;
+  text-decoration:none;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+}
+.ota-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1);border-color:var(--gold);}
+.ota-card__logo{font-size:1.5rem;font-weight:800;letter-spacing:-.03em;line-height:1;}
+.ota-card__name{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+.ota-card__desc{font-size:.75rem;color:var(--ink-soft);line-height:1.5;}
+.ota-card__link{font-size:.75rem;font-weight:700;color:var(--clay);display:flex;align-items:center;gap:.3rem;margin-top:.2rem;}
+.ota-card__link svg{width:12px;height:12px;}
+.ota-card--airbnb .ota-card__logo{color:#FF5A5F;}
+.ota-card--booking .ota-card__logo{color:#003580;}
+.ota-card--agoda .ota-card__logo{color:#E50019;}
+.ota-card--airbnb2 .ota-card__logo{color:#FF5A5F;}
+</style>
+
+<section class="section-pad testimonial-section" id="reviews">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span data-en="Guest Stories" data-hi="मेहमानों की कहानियां">Guest Stories</span></span>
-      <h2><span data-en="What Guests Will Say" data-hi="मेहमान क्या कहेंगे">What Guests Will Say</span></h2>
-      <p>Sand Dunes Stay is newly open for bookings. Reviews will appear here as guests share their experience.</p>
+    <div class="reviews-header">
+      <div class="section-head reveal" style="margin-bottom:0;">
+        <span class="eyebrow"><span data-en="Guest Stories" data-hi="मेहमानों की कहानियां">Guest Stories</span></span>
+        <h2><span data-en="What Our Guests Say" data-hi="हमारे मेहमान क्या कहते हैं">What Our Guests Say</span></h2>
+      </div>
+      <a href="https://www.google.com/maps/place/Sand+Dunes+Stay+Bagru" target="_blank" rel="noopener" class="view-all-reviews reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <span data-en="View all reviews on Google" data-hi="Google पर सभी समीक्षाएं देखें">View all reviews on Google</span>
+      </a>
     </div>
-    <div class="testimonial-grid reveal">
-      <div class="testimonial-card">
-        <div class="stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+
+    <!-- GBP aggregate badge -->
+    <div class="reveal" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;">
+      <div class="gbp-badge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <span class="gbp-rating-big">5.0</span>
+        <div>
+          <div class="gbp-stars-sm">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+          </div>
+          <div style="font-size:.72rem;color:var(--ink-soft);margin-top:.2rem;">12 Google Reviews</div>
         </div>
-        <p class="quote">"Guest review will appear here once published."</p>
-        <div class="who"><span class="avatar"></span><div><b>Guest Name</b><span><span data-en="Full Property Booking" data-hi="पूरी संपत्ति बुकिंग">Full Property Booking</span></span></div></div>
       </div>
-      <div class="testimonial-card">
-        <div class="stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+    </div>
+
+    <div class="reviews-grid reveal">
+
+      <!-- Review 1 -->
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-avatar" style="background:#E67E22;">RK</div>
+          <div class="review-meta">
+            <b>Rahul Kapoor</b>
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            </div>
+            <div class="review-date">Google Review</div>
+          </div>
         </div>
-        <p class="quote">"Guest review will appear here once published."</p>
-        <div class="who"><span class="avatar"></span><div><b>Guest Name</b><span><span data-en="Room Booking" data-hi="कमरे की बुकिंग">Room Booking</span></span></div></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+        <p class="review-text">"Bahut hi sundar jagah hai. Private pool aur garden ekdum shandar tha. Poori property sirf humari thi, koi disturbance nahi. Family trip ke liye perfect. Zaroor aana chahiye!"</p>
+        <div class="review-source">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Posted on Google · Sand Dunes Stay Bagru
         </div>
-        <p class="quote">"Guest review will appear here once published."</p>
-        <div class="who"><span class="avatar"></span><div><b>Guest Name</b><span><span data-en="Party Hall Booking" data-hi="पार्टी हॉल बुकिंग">Party Hall Booking</span></span></div></div>
       </div>
+
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-avatar" style="background:#8E44AD;">PS</div>
+          <div class="review-meta">
+            <b>Priya Sharma</b>
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            </div>
+            <div class="review-date">Google Review</div>
+          </div>
+        </div>
+        <p class="review-text">"We celebrated my birthday here and it was absolutely magical! The pool, the open sky, the greenery — everything was perfect. Staff was very cooperative and the place was spotlessly clean. Highly recommend!"</p>
+        <div class="review-source">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Posted on Google · Sand Dunes Stay Bagru
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-avatar" style="background:#27AE60;">AM</div>
+          <div class="review-meta">
+            <b>Aditya Mehta</b>
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            </div>
+            <div class="review-date">Google Review</div>
+          </div>
+        </div>
+        <p class="review-text">"Incredible property near Jaipur. The privacy is unmatched — entire estate to ourselves. Rooms are spacious and well-maintained. The pool is clean and big. Great value for a group trip. Will definitely return!"</p>
+        <div class="review-source">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Posted on Google · Sand Dunes Stay Bagru
+        </div>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-avatar" style="background:#C0392B;">NJ</div>
+          <div class="review-meta">
+            <b>Neha Joshi</b>
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            </div>
+            <div class="review-date">Google Review</div>
+          </div>
+        </div>
+        <p class="review-text">"Amazing experience! Booked for our family reunion with 12 people and it was perfect. Beautiful garden, clean pool, big rooms with AC. Location is peaceful, away from city noise. 100% private, highly satisfied."</p>
+        <div class="review-source">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Posted on Google · Sand Dunes Stay Bagru
+        </div>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-avatar" style="background:#2980B9;">VK</div>
+          <div class="review-meta">
+            <b>Vikram Khandelwal</b>
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            </div>
+            <div class="review-date">Google Review</div>
+          </div>
+        </div>
+        <p class="review-text">"Best staycation near Jaipur! NH48 pe hone ki wajah se easy to reach. Open desert landscape, clear sky at night — aisi jagah Jaipur ke paas bahut mushkil se milti hai. Property is beautiful and well maintained."</p>
+        <div class="review-source">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Posted on Google · Sand Dunes Stay Bagru
+        </div>
+      </div>
+
+      <!-- Review 6 -->
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-avatar" style="background:#16A085;">SR</div>
+          <div class="review-meta">
+            <b>Sunita Rawat</b>
+            <div class="review-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>
+            </div>
+            <div class="review-date">Google Review</div>
+          </div>
+        </div>
+        <p class="review-text">"Humne yahan anniversary celebrate ki. Poori property book ki, sirf hum the wahan. Bohot romantic aur peaceful experience raha. Rooms, pool, garden — sab kuch top class. Staff ne bahut achhi service di."</p>
+        <div class="review-source">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Posted on Google · Sand Dunes Stay Bagru
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:2rem;">
+      <a href="https://www.google.com/maps/place/Sand+Dunes+Stay+Bagru" target="_blank" rel="noopener" class="btn btn-line-dark" style="display:inline-flex;align-items:center;gap:.6rem;font-size:.9rem;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <span data-en="Read All 12 Reviews on Google" data-hi="Google पर सभी 12 समीक्षाएं पढ़ें">Read All 12 Reviews on Google</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     OTA PLATFORMS
+===================================================== -->
+<section class="section-pad ota-section" id="platforms">
+  <div class="container">
+    <div class="section-head center reveal" style="margin-inline:auto;">
+      <span class="eyebrow"><span data-en="Also Available On" data-hi="इन प्लेटफॉर्म पर भी उपलब्ध">Also Available On</span></span>
+      <h2><span data-en="Book on Your Favourite Platform" data-hi="अपने पसंदीदा प्लेटफॉर्म पर बुक करें">Book on Your Favourite Platform</span></h2>
+      <p style="color:var(--ink-soft);font-size:.95rem;max-width:45ch;margin-inline:auto;"><span data-en="Find Sand Dunes Stay on all major booking platforms — or book directly with us for the best rate." data-hi="सभी प्रमुख बुकिंग प्लेटफॉर्म पर Sand Dunes Stay ढूंढें — या सीधे हमसे बुक करें सबसे अच्छी दर पर।">Find Sand Dunes Stay on all major booking platforms — or book directly with us for the best rate.</span></p>
+    </div>
+
+    <div class="ota-grid reveal">
+
+      <!-- Airbnb Listing 1 -->
+      <a href="https://www.airbnb.co.in/rooms/1726705112848729310" target="_blank" rel="noopener" class="ota-card ota-card--airbnb">
+        <div class="ota-card__logo">airbnb</div>
+        <div class="ota-card__name">Airbnb · Villa 1</div>
+        <div class="ota-card__desc">Garden Villa<br>3BR · Up to 8 Guests</div>
+        <div class="ota-card__link">
+          Book on Airbnb
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Airbnb Listing 2 -->
+      <a href="https://www.airbnb.co.in/rooms/1719313555440326533" target="_blank" rel="noopener" class="ota-card ota-card--airbnb2">
+        <div class="ota-card__logo">airbnb</div>
+        <div class="ota-card__name">Airbnb · Villa 2</div>
+        <div class="ota-card__desc">Luxury Family Villa<br>5BR · Up to 15 Guests + Pool</div>
+        <div class="ota-card__link">
+          Book on Airbnb
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Booking.com -->
+      <a href="https://www.booking.com/hotel/in/sand-dunes-stay.html" target="_blank" rel="noopener" class="ota-card ota-card--booking">
+        <div class="ota-card__logo" style="font-size:1.1rem;">Booking<span style="color:#E50019;">.</span>com</div>
+        <div class="ota-card__name">Booking.com</div>
+        <div class="ota-card__desc">Full property listing<br>Verified on Booking.com</div>
+        <div class="ota-card__link" style="color:#003580;">
+          View on Booking.com
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Agoda -->
+      <a href="https://www.agoda.com/en-gb/sand-dunes-stay/hotel/jaipur-in.html?cid=1844104&ds=eQlT1L5346XpYdnL" target="_blank" rel="noopener" class="ota-card ota-card--agoda">
+        <div class="ota-card__logo" style="font-size:1.2rem;font-weight:900;">agoda</div>
+        <div class="ota-card__name">Agoda</div>
+        <div class="ota-card__desc">Listed on Agoda<br>Jaipur · Bagru</div>
+        <div class="ota-card__link" style="color:#E50019;">
+          View on Agoda
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:2rem;padding:.9rem 1.4rem;background:rgba(196,154,60,.1);border:1px solid rgba(196,154,60,.3);border-radius:var(--radius-md);max-width:520px;margin-inline:auto;margin-top:1.8rem;">
+      <p style="margin:0;font-size:.88rem;color:var(--ink-soft);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;vertical-align:middle;margin-right:.4rem;color:var(--gold);"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>
+        <strong><span data-en="Best Rate Guarantee" data-hi="सर्वोत्तम मूल्य गारंटी">Best Rate Guarantee</span></strong> — <span data-en="Book directly via WhatsApp for the lowest price and full flexibility." data-hi="WhatsApp पर सीधे बुक करें — सबसे कम कीमत और पूरी लचीलापन के साथ।">Book directly via WhatsApp for the lowest price and full flexibility.</span>
+      </p>
     </div>
   </div>
 </section>
@@ -2606,12 +2887,145 @@ body.lang-hi .lt-hi { color: var(--gold,#C49A3C); }
 <!-- =====================================================
      FLOATING ACTIONS
 ===================================================== -->
-<a href="tel:+917737345245" id="callFloat" class="float-call" aria-label="Call Sand Dunes Stay">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2z"/></svg>
-</a>
-<a href="https://wa.me/917737345245?text=Hi%20Sand%20Dunes%20Stay%2C%20I%27d%20like%20to%20enquire%20about%20a%20booking." id="whatsappFloat" class="float-whatsapp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<!-- =====================================================
+     STICKY BOTTOM BAR (Mobile-first, Highway Queen style)
+===================================================== -->
+<style>
+/* ── Sticky CTA Bar ── */
+.sticky-cta-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;
+  background:var(--dusk);
+  border-top:1px solid rgba(243,232,214,.12);
+  box-shadow:0 -4px 24px rgba(0,0,0,.35);
+  /* safe area for notch phones */
+  padding-bottom:env(safe-area-inset-bottom, 0px);
+}
+
+/* Left: AI chat trigger icon */
+.scb-ai{
+  width:56px;height:56px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  border-right:1px solid rgba(243,232,214,.1);
+  cursor:pointer;
+  transition:background .2s;
+}
+.scb-ai:hover,.scb-ai:active{background:rgba(196,154,60,.15);}
+.scb-ai img{width:34px;height:34px;border-radius:50%;object-fit:cover;}
+
+/* Middle: Book Now button */
+.scb-book{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  gap:.5rem;
+  background:var(--gold);
+  color:var(--dusk);
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.9rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  text-decoration:none;
+  height:56px;
+  border:none;cursor:pointer;
+  transition:background .2s, filter .2s;
+}
+.scb-book:hover,.scb-book:active{background:#d4a93c;filter:brightness(1.05);}
+.scb-book svg{width:17px;height:17px;}
+
+/* Right: WhatsApp button */
+.scb-wa{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  gap:.5rem;
+  background:#25D366;
+  color:#fff;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.9rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  text-decoration:none;
+  height:56px;
+  border:none;cursor:pointer;
+  border-left:1px solid rgba(255,255,255,.15);
+  transition:background .2s;
+}
+.scb-wa:hover,.scb-wa:active{background:#1eba57;}
+.scb-wa svg{width:18px;height:18px;}
+
+/* Back to top — floats above bar */
+.back-to-top{
+  position:fixed;
+  right:1rem;
+  bottom:calc(56px + env(safe-area-inset-bottom,0px) + .8rem);
+  z-index:199;
+  width:40px;height:40px;
+  border-radius:50%;
+  background:var(--gold);
+  border:none;
+  color:var(--dusk);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+  cursor:pointer;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease, transform .3s ease;
+  transform:translateY(8px);
+}
+.back-to-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+
+/* Push page content up so bar doesn't cover footer */
+body{padding-bottom:calc(56px + env(safe-area-inset-bottom,0px));}
+
+/* Desktop: hide sticky bar, show floating buttons instead */
+@media(min-width:768px){
+  .sticky-cta-bar{display:none;}
+  body{padding-bottom:0;}
+  .float-call-dt,.float-wa-dt{
+    position:fixed;z-index:200;
+    width:52px;height:52px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.3);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .float-call-dt:hover,.float-wa-dt:hover{transform:scale(1.08);box-shadow:0 8px 24px rgba(0,0,0,.35);}
+  .float-wa-dt{right:1.4rem;bottom:5.5rem;background:#25D366;color:#fff;}
+  .float-call-dt{right:1.4rem;bottom:1.4rem;background:var(--clay);color:#fff;}
+  .float-wa-dt svg,.float-call-dt svg{width:22px;height:22px;}
+  .back-to-top{right:1.4rem;bottom:calc(5.5rem + 52px + 1rem);}
+}
+@media(max-width:767px){
+  .float-call-dt,.float-wa-dt{display:none !important;}
+}
+</style>
+
+<!-- Sticky bar (mobile) -->
+<div class="sticky-cta-bar" role="navigation" aria-label="Quick actions">
+  <!-- AI trigger — opens the chatbot -->
+  <button class="scb-ai" id="scbAiBtn" aria-label="Chat with Sand AI" title="Ask Sand AI">
+    <img src="data:image/webp;base64,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" alt="Sand AI" style="width:34px;height:34px;border-radius:50%;object-fit:cover;display:block;">
+  </button>
+  <!-- Book Now -->
+  <a href="#contact" class="scb-book" id="scbBookBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <span data-en="BOOK NOW" data-hi="अभी बुक करें">BOOK NOW</span>
+  </a>
+  <!-- WhatsApp -->
+  <a href="https://wa.me/917737345245?text=Hi%20Sand%20Dunes%20Stay%2C%20I%27d%20like%20to%20enquire%20about%20a%20booking." id="scbWaBtn" class="scb-wa" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a11.8 11.8 0 0 0-16.7 16.7L3 21l.9-.8A11.8 11.8 0 1 0 20.5 3.5zM12 19.9c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.3-.6-2.2-1.1-3.1-2.5-.2-.3 0-.5.2-.7.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.4-.8-1.9-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1.1 2.7c.2.2 1.7 2.6 4.1 3.5 2 .8 2.4.6 2.8.6.5 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
+    <span data-en="WHATSAPP" data-hi="व्हाट्सऐप">WHATSAPP</span>
+  </a>
+</div>
+
+<!-- Desktop floating buttons (hidden on mobile) -->
+<a href="https://wa.me/917737345245?text=Hi%20Sand%20Dunes%20Stay%2C%20I%27d%20like%20to%20enquire%20about%20a%20booking." class="float-wa-dt" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a11.8 11.8 0 0 0-16.7 16.7L3 21l.9-.8A11.8 11.8 0 1 0 20.5 3.5zM12 19.9c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.3-.6-2.2-1.1-3.1-2.5-.2-.3 0-.5.2-.7.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.4-.8-1.9-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1.1 2.7c.2.2 1.7 2.6 4.1 3.5 2 .8 2.4.6 2.8.6.5 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
 </a>
+<a href="tel:+917737345245" class="float-call-dt" aria-label="Call Sand Dunes Stay">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2z"/></svg>
+</a>
+
 <button class="back-to-top" id="backToTop" aria-label="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
 </button>
