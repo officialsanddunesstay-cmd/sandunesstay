@@ -201,7 +201,7 @@ section{position:relative;}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:var(--gold);transition:width .3s ease;}
 .nav-links a:hover::after{width:100%;}
 
-.nav-cta{display:none;}
+.nav-cta{display:none !important;}
 .nav-toggle{
   width:44px;height:44px;border-radius:50%;
   border:1.4px solid rgba(243,232,214,.5);
@@ -763,37 +763,9 @@ section{position:relative;}
 .modal-box .btn{margin-top:.5rem;position:sticky;bottom:0;}
 
 /* ===========================================================
-   19. FLOATING BUTTONS
+   19. FLOATING BUTTONS — handled by sticky-cta-bar styles above
    =========================================================== */
-.float-whatsapp{
-  position:fixed;bottom:24px;right:20px;z-index:80;
-  width:58px;height:58px;border-radius:50%;
-  background:#25D366;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 26px -6px rgba(0,0,0,.4);
-}
-.float-whatsapp svg{width:28px;height:28px;color:#fff;}
-.float-whatsapp::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;animation:pulseRing 2.4s infinite;z-index:-1;}
 @keyframes pulseRing{0%{transform:scale(1);opacity:.6;}100%{transform:scale(1.7);opacity:0;}}
-
-.float-call{
-  position:fixed;bottom:220px;right:20px;z-index:80;
-  width:58px;height:58px;border-radius:50%;
-  background:var(--clay);display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 26px -6px rgba(0,0,0,.4);
-}
-.float-call svg{width:26px;height:26px;color:#fff;}
-.float-call::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--clay);animation:pulseRing 2.4s infinite;animation-delay:1.2s;z-index:-1;}
-
-.back-to-top{
-  position:fixed;bottom:1.5rem;left:1.5rem;z-index:80;
-  width:46px;height:46px;border-radius:50%;
-  background:var(--dusk);border:1px solid rgba(243,232,214,.2);
-  display:flex;align-items:center;justify-content:center;color:var(--cream-ink);
-  opacity:0;pointer-events:none;transform:translateY(10px);
-  transition:opacity .3s ease, transform .3s ease;
-}
-.back-to-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0);}
-.back-to-top svg{width:17px;height:17px;}
 
 /* ===========================================================
    20. MISC UTILITIES
@@ -801,10 +773,6 @@ section{position:relative;}
 .text-center{text-align:center;}
 .mt-3{margin-top:1.6rem;}
 @media (max-width:480px){
-  .float-whatsapp{width:52px;height:52px;}
-  .float-whatsapp svg{width:24px;height:24px;}
-  .float-call{width:52px;height:52px;bottom:5.6rem;}
-  .float-call svg{width:23px;height:23px;}
   .included-grid{grid-template-columns:1fr;}
 }
 
@@ -861,7 +829,7 @@ section{position:relative;}
 
 /* ── Performance hints ────────────────────────────────────────────── */
 .hero-slide{will-change:opacity;}
-.float-whatsapp,.float-call,.back-to-top{will-change:transform;}
+.back-to-top{will-change:transform;}
 .img-slider__track{will-change:scroll-position;}
 .reveal{contain:layout style;}
 .marquee-track{will-change:transform;}
@@ -1115,27 +1083,26 @@ section{position:relative;}
 /* ── Responsive adjustments ── */
 @media (max-width: 480px) {
   #sds-chat-toggle {
-    bottom: 100px;
-    right: 16px;
-    width: 52px;
-    height: 52px;
-  }
-  #sds-chat-toggle img {
-    width: 52px !important;
-    height: 52px !important;
+    /* hidden on mobile — AI triggered via sticky bar button */
+    display: none !important;
   }
   #sds-chat-window {
-    bottom: 170px;
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 8px);
     right: 12px;
     width: calc(100vw - 1.5rem);
-    max-height: calc(100dvh - 190px);
+    max-height: calc(100dvh - 130px);
   }
-  .float-call {
-    bottom: 220px;
-    right: 16px;
-    width: 48px;
-    height: 48px;
-</style>
+}
+@media (min-width: 481px) {
+  #sds-chat-toggle {
+    bottom: 8.5rem;
+    right: 1.4rem;
+  }
+  #sds-chat-window {
+    bottom: 11rem;
+    right: 1.4rem;
+  }
+}
 
 <!-- ===== LANG TOGGLE STYLES ===== -->
 <style>
@@ -3243,8 +3210,31 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = `tel:${CALL_NUMBER}`;
   });
 
-  /* ---- floating whatsapp button ---- */
-  document.getElementById('whatsappFloat').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`;
+  /* ---- sticky bar: WhatsApp href update ---- */
+  const scbWa = document.getElementById('scbWaBtn');
+  if(scbWa) scbWa.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`;
+  /* also update desktop floating wa */
+  document.querySelectorAll('.float-wa-dt').forEach(el => {
+    el.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`;
+  });
+
+  /* ---- sticky bar: Book Now smooth scroll ---- */
+  const scbBook = document.getElementById('scbBookBtn');
+  if(scbBook){
+    scbBook.addEventListener('click', e => {
+      e.preventDefault();
+      scrollToSelector('#contact');
+    });
+  }
+
+  /* ---- sticky bar: AI button → open chatbot ---- */
+  const scbAi = document.getElementById('scbAiBtn');
+  if(scbAi){
+    scbAi.addEventListener('click', () => {
+      const chatToggle = document.getElementById('sds-chat-toggle');
+      if(chatToggle) chatToggle.click();
+    });
+  }
 
   /* ---- modals ---- */
   document.querySelectorAll('[data-modal]').forEach(btn => {
@@ -3863,14 +3853,6 @@ function galleryShowMore(cls, btnId, groupId) {
 
 })();
 </script>
-
-<!-- ===== LANG TRANSLATION ENGINE ===== -->
-<script>
-(function () {
-  'use strict';
-
-  const STORAGE_KEY = 'sds_lang';
-  const toggle = document.getElementById('langToggle');
 
 </body>
 </html>
