@@ -1,4 +1,49 @@
+# robots.txt — Sand Dunes Stay
+# https://sanddunesstay.com
+# Last updated: 2026-08-29
+
+# ─────────────────────────────────────────────
+# Allow all major search engine crawlers
+# ─────────────────────────────────────────────
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+# ─────────────────────────────────────────────
+# Default rule for all other crawlers
+# ─────────────────────────────────────────────
+
 User-agent: *
 Allow: /
 
+# Block internal / system files that should not be indexed
+Disallow: /CNAME
+Disallow: /README.md
+
+# ─────────────────────────────────────────────
+# Sitemap location
+# ─────────────────────────────────────────────
+
 Sitemap: https://sanddunesstay.com/sitemap.xml
+
